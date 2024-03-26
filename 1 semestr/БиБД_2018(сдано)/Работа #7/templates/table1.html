@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица 1</title>
+</head>
+<body>
+
+<form action="/table1" method="post">
+    <label for="f_number">Номер:</label>
+    <input type="text" name="f_number" id="f_number">
+    <label for="f_adress">Адрес:</label>
+    <input type="text" name="f_adress" id="f_adress">
+    <label for="f_FIO">ФИО:</label>
+    <input type="text" name="f_FIO" id="f_FIO">
+    <input type="submit" value="Добавить">
+</form>
+
+<h2>Данные из базы данных:</h2>
+<table border="1">
+    <tr>
+        <th>№</th>
+        <th>Адрес</th>
+        <th>ФИО</th>
+        <th>Действия</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>
+            <form action="/delete_table1" method="post" style="display: inline;">
+                <input type="hidden" name="id_to_delete" value="{{ row[0] }}">
+                <input type="submit" value="Удалить">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

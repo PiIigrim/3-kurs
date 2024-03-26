@@ -1,0 +1,45 @@
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\WinFormsApp1.exe
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\WinFormsApp1.deps.json
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\WinFormsApp1.dll
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\WinFormsApp1.pdb
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\agq-CM\WinFormsApp1.resources.dll
+C:\Users\Danik\source\repos\WinFormsApp1\bin\Debug\net7.0-windows\ru\WinFormsApp1.resources.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.Form1.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.Properties.Resources.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.Form1.agq-CM.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.Form1.ru.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\agq-CM\WinFormsApp1.resources.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\ru\WinFormsApp1.resources.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\refint\WinFormsApp1.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.pdb
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\ref\WinFormsApp1.dll
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.OneToOne.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.AddElem.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.FirstMatch.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.ManualPrint.resources
+C:\Users\Danik\source\repos\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.NewDB.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.NewDB.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.OneToOne.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.FillListForm.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.MainForm.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.ManualPrint.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.Properties.Resources.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.SearchRecordForm.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.MainForm.agq-CM.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.MainForm.ru.resources
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.AssemblyInfo.cs
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.dll
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\refint\WinFormsApp1.dll
+F:\3 Kurs\OMIS\46\WinFormsApp1\WinFormsApp1\obj\Debug\net7.0-windows\WinFormsApp1.pdb
