@@ -17,15 +17,15 @@ class Game:
         self.font = pygame.font.Font('c:/work/2 semestr/GUI/game/font/Pixeled.ttf', 16)
 
         self.shape = obstacles.shape
-        self.block_size = 6
+        self.block_size = 8
         self.blocks = pygame.sprite.Group()
-        self.obstacle_amount = 4
+        self.obstacle_amount = 5
         self.obstacle_x_positions = [num * (screen_width / self.obstacle_amount) for num in range(self.obstacle_amount)]
-        self.create_mul_obstacle(*self.obstacle_x_positions, x_start = screen_width / 15, y_start = 480)
+        self.create_mul_obstacle(*self.obstacle_x_positions, x_start = screen_width / 15, y_start = 580)
 
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
-        self.aliens_setup(rows = 6, cols = 8)
+        self.aliens_setup(rows = 6, cols = 9)
         self.alien_direction = 1
 
         self.extra = pygame.sprite.GroupSingle()
@@ -38,6 +38,32 @@ class Game:
         self.laser_sound.set_volume(0.4)
         self.explosion_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/explosion.wav')
         self.explosion_sound.set_volume(0.3)
+
+    def restart_game(self):
+        player_sprite = Player((screen_width / 2, screen_height), screen_width, 5)
+        self.player = pygame.sprite.GroupSingle(player_sprite)
+
+        self.lives = 3
+        self.lives_surface = pygame.image.load('c:/work/2 semestr/GUI/game/graphics/player.png').convert_alpha()
+        self.live_x_start_pos = screen_width - (self.lives_surface.get_size()[0] * 2 + 20)
+
+        self.score = 0
+        self.font = pygame.font.Font('c:/work/2 semestr/GUI/game/font/Pixeled.ttf', 16)
+
+        self.shape = obstacles.shape
+        self.block_size = 8
+        self.blocks = pygame.sprite.Group()
+        self.obstacle_amount = 5
+        self.obstacle_x_positions = [num * (screen_width / self.obstacle_amount) for num in range(self.obstacle_amount)]
+        self.create_mul_obstacle(*self.obstacle_x_positions, x_start = screen_width / 15, y_start = 580)
+
+        self.aliens = pygame.sprite.Group()
+        self.alien_lasers = pygame.sprite.Group()
+        self.aliens_setup(rows = 6, cols = 9)
+        self.alien_direction = 1
+
+        self.extra = pygame.sprite.GroupSingle()
+        self.extra_spawn_time = random.randint(40, 80)
         
     def create_obstacle(self, x_start, y_start, offset_x):
         for row_index, row in enumerate(self.shape):
@@ -52,7 +78,7 @@ class Game:
         for offset_x in offset:
             self.create_obstacle(x_start, y_start, offset_x)
 
-    def aliens_setup(self, rows, cols, x_distance = 60, y_distance = 48, offset_x = 70, offset_y = 40):
+    def aliens_setup(self, rows, cols, x_distance = 100, y_distance = 60, offset_x = 70, offset_y = 60):
         for row_index, row in enumerate(range(rows)):
             for col_index, col in enumerate(range(cols)):
                 x = col_index * x_distance + offset_x
@@ -108,6 +134,20 @@ class Game:
                     self.score += 500
                     laser.kill()
 
+        if self.player.sprite.SL_laser:
+            for sl_laser in self.player.sprite.SL_laser:
+                if pygame.sprite.spritecollide(sl_laser, self.blocks, True):
+                    pass
+
+                aliens_hit = pygame.sprite.spritecollide(sl_laser, self.aliens, True)
+                if aliens_hit:
+                    for alien in aliens_hit:
+                        self.score += alien.value
+                    self.explosion_sound.play()
+
+                if pygame.sprite.spritecollide(sl_laser, self.extra, True):
+                    self.score += 500
+
         if self.alien_lasers:
             for laser in self.alien_lasers:
                 if pygame.sprite.spritecollide(laser, self.blocks, True):
@@ -117,8 +157,8 @@ class Game:
                     laser.kill()
                     self.lives -= 1
                     if self.lives <= 0:
-                        pygame.quit()
-                        sys.exit()
+                        print('GAME OVER')
+                        self.restart_game()
 
         if self.aliens:
             for alien in self.aliens:
@@ -137,6 +177,12 @@ class Game:
         score_surface = self.font.render(f'Score: {self.score}', False, 'white')
         score_rect = score_surface.get_rect(topleft = (10, -10))
         screen.blit(score_surface, score_rect)
+
+    def ready_to_shoot_SL(self):
+        if self.player.sprite.is_SL_ready_to_shoot():
+            SL_surface = self.font.render(f'SL READY', False, 'white')
+            SL_rect = SL_surface.get_rect(bottomleft = (10, screen_height - 10))
+            screen.blit(SL_surface, SL_rect)
                 
     def run(self):
         self.player.update()
@@ -147,6 +193,8 @@ class Game:
         self.extra.update()
         self.collision_checks()
         self.player.sprite.lasers.draw(screen)
+        self.player.sprite.SL_laser.draw(screen)
+        self.ready_to_shoot_SL()
         self.player.draw(screen)
         self.blocks.draw(screen)
         self.aliens.draw(screen)
@@ -157,8 +205,8 @@ class Game:
 
 if __name__ == "__main__":
     pygame.init()
-    screen_width = 600
-    screen_height = 600
+    screen_width = 1280
+    screen_height = 720
     screen = pygame.display.set_mode((screen_width, screen_height))
     clock = pygame.time.Clock()
     game = Game()
