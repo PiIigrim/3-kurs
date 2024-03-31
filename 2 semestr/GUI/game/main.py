@@ -1,8 +1,23 @@
 import pygame, sys, random
 from player import Player
-import obstacles
+import obstacles, time
 from alien import Alien, Extra
 from laser import Laser
+
+def read_stats():
+    stats = {}
+    with open('c:/work/2 semestr/GUI/game/stats.txt', 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            key, value = line.strip().split(': ')
+            stats[key] = int(value)
+    return stats
+
+def write_stats():
+    with open('c:/work/2 semestr/GUI/game/stats.txt', 'w') as f:
+        for key, value in stats.items():
+            f.write(f'{key}: {value}\n')
+
 
 class Game:
     def __init__(self):
@@ -10,7 +25,13 @@ class Game:
         self.speed_multiplier = 1
         self.pause = False
         self.game_over = False
+        self.level_clear = False
+        self.message_shown = False
+        self.stat_changed = False
+        self.played = False
         self.level = 1
+        self.alien_rows = 4
+        self.alien_cols = 5
         player_sprite = Player((screen_width / 2, screen_height), screen_width, 5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
@@ -20,7 +41,7 @@ class Game:
 
         self.score = 0
         self.font = pygame.font.Font('c:/work/2 semestr/GUI/game/font/Pixeled.ttf', 16)
-        self.game_over_font = pygame.font.Font('c:/work/2 semestr/GUI/game/font/Pixeled.ttf', 64)
+        self.big_font = pygame.font.Font('c:/work/2 semestr/GUI/game/font/Pixeled.ttf', 64)
 
         self.shape = obstacles.shape
         self.block_size = 8
@@ -31,7 +52,7 @@ class Game:
 
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
-        self.aliens_setup(rows = 6, cols = 9)
+        self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
         self.alien_direction = 1
         self.down = 2
 
@@ -47,10 +68,17 @@ class Game:
         self.explosion_sound.set_volume(0.3)
         self.hit_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/hit-sound.wav')
         self.hit_sound.set_volume(0.5)
+        self.extra_hit_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/extra-hit.wav')
+        self.extra_hit_sound.set_volume(1.5)
         self.death_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/death-sound.wav')
         self.death_sound.set_volume(0.5)
+        self.level_clear_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/level-clear.wav')
+        self.level_clear_sound.set_volume(0.5)
 
     def restart_game(self):
+        stats['alien_shot_speed'] = 800
+        write_stats()
+        self.stats = read_stats()
         self.i = 0
         self.level = 1
         self.death_sound.stop()
@@ -73,7 +101,7 @@ class Game:
 
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
-        self.aliens_setup(rows = 6, cols = 9)
+        self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
         self.alien_direction = 1
         self.down = 2
 
@@ -85,16 +113,23 @@ class Game:
         self.music.play(loops = -1)
 
     def new_level(self):
+        self.level += 1
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
-        self.aliens_setup(rows = 6, cols = 9)
+        self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
         self.speed_multiplier += 0.2
         self.down += 1
+        if self.level % 5 == 0:
+            choise = random.choice([1, 2])
+            if choise == 1 : self.alien_rows += 1
+            elif choise == 2 : self.alien_cols += 1
+        
+        if self.level % 3 == 0:
+            stats['alien_shot_speed'] = stats['alien_shot_speed'] // 1.2
 
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = random.randint(40, 80)
-
-        self.level += 1
+        self.stat_changed = False
         
     def create_obstacle(self, x_start, y_start, offset_x):
         for row_index, row in enumerate(self.shape):
@@ -164,6 +199,7 @@ class Game:
                     self.explosion_sound.play()
 
                 if pygame.sprite.spritecollide(laser, self.extra, True):
+                    self.extra_hit_sound.play()
                     self.score += 500
                     laser.kill()
 
@@ -179,6 +215,7 @@ class Game:
                     self.explosion_sound.play()
 
                 if pygame.sprite.spritecollide(sl_laser, self.extra, True):
+                    self.lives += 1
                     self.score += 500
 
         if self.alien_lasers:
@@ -198,8 +235,7 @@ class Game:
                 pygame.sprite.spritecollide(alien, self.blocks, True)
 
                 if pygame.sprite.spritecollide(alien, self.player, False):
-                    pygame.quit()
-                    sys.exit()
+                    self.game_over = True
 
     def display_lives(self):
         for live in range(self.lives - 1):
@@ -207,8 +243,10 @@ class Game:
             screen.blit(self.lives_surface, (x, 8))
 
     def all_clear(self):
-        if not self.aliens.sprites() and not self.game_over:
-            self.new_level()
+        if not self.aliens.sprites() and not self.game_over and not self.message_shown:
+            self.level_clear = True
+            self.message_shown = True
+            self.clear_time = pygame.time.get_ticks()
 
     def game_over_screen(self):
         if self.lives <= 0:
@@ -221,11 +259,19 @@ class Game:
                 player_sprite = Player((10000, 10000), 10000, 5)
                 self.player = pygame.sprite.GroupSingle(player_sprite)
                 self.i += 1
-            game_over_surface = self.game_over_font.render('GAME OVER', False, 'white')
-            game_over_rect = game_over_surface.get_rect(center = (screen_width / 2, screen_height / 2))
+            if self.level > stats['best_level']:
+                best_level_surface = self.font.render(f'New best level: {self.level}', False, 'white')
+                best_level_rect = best_level_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 100))
+                screen.blit(best_level_surface, best_level_rect)
+            if self.score > stats['best_score']:
+                best_score_surface = self.font.render(f'New best score: {self.score}', False, 'white')
+                best_score_rect = best_score_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 160))
+                screen.blit(best_score_surface, best_score_rect)
+            game_over_surface = self.big_font.render('GAME OVER', False, 'white')
+            game_over_rect = game_over_surface.get_rect(center = (screen_width / 2, (screen_height / 2) - 100))
             screen.blit(game_over_surface, game_over_rect)
             game_over_surface2 = self.font.render('Press ENTER to restart', False, 'white')
-            game_over_rect2 = game_over_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 140))
+            game_over_rect2 = game_over_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 40))
             screen.blit(game_over_surface2, game_over_rect2)
 
     def display_score(self):
@@ -243,6 +289,29 @@ class Game:
         level_surface = self.font.render(f'Level: {self.level}', False, 'white')
         level_rect = level_surface.get_rect(bottomright = (screen_width - 10, screen_height - 10))
         screen.blit(level_surface, level_rect)
+    
+    def display_clear(self):
+        if not self.played:
+            self.level_clear_sound.play()
+            self.played = True
+        if self.level > stats['best_level']:
+            if not self.stat_changed:
+                stats['player_SL_shot_cooldown']  = stats['player_SL_shot_cooldown'] // 1.05
+            SL_shot_cd_decr_surface = self.font.render(f'SL cooldown decreased to {stats["player_SL_shot_cooldown"]}', False, 'white')
+            SL_shot_cd_decr_rect = SL_shot_cd_decr_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 50))
+            screen.blit(SL_shot_cd_decr_surface, SL_shot_cd_decr_rect)
+        
+        if self.score > stats['best_score']:
+            if not self.stat_changed:
+                stats['player_shot_cooldown'] = stats['player_shot_cooldown'] // 1.05
+            shot_cd_decr_surface = self.font.render(f'Shot cooldown decreased to {stats["player_shot_cooldown"]}', False, 'white')
+            shot_cd_decr_rect = shot_cd_decr_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 100))
+            screen.blit(shot_cd_decr_surface, shot_cd_decr_rect)
+
+        self.stat_changed = True
+        level_surface = self.big_font.render(f'Level {self.level} clear!', False, 'white')
+        level_rect = level_surface.get_rect(center = (screen_width / 2, (screen_height / 2) - 50))
+        screen.blit(level_surface, level_rect)
                 
     def run(self):
         if not self.game_over:
@@ -251,8 +320,19 @@ class Game:
             self.game_over_screen()
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RETURN]:
+                stats['best_level'] = self.level
+                stats['best_score'] = self.score
+                stats['alien_shot_speed'] = 800
+                write_stats()
                 self.game_over = False
                 self.restart_game()
+        if self.level_clear:
+            self.display_clear()
+            if pygame.time.get_ticks() - self.clear_time >= 3500:
+                self.level_clear = False
+                self.message_shown = False
+                self.played = False
+                self.new_level()
         self.aliens.update(self.alien_direction)
         self.alien_position_check()
         self.alien_lasers.update()
@@ -273,6 +353,7 @@ class Game:
         self.display_level()
 
 if __name__ == "__main__":
+    stats = read_stats()
     pygame.init()
     screen_width = 1280
     screen_height = 720
@@ -281,11 +362,13 @@ if __name__ == "__main__":
     game = Game()
 
     ALIENLASER = pygame.USEREVENT + 1
-    pygame.time.set_timer(ALIENLASER, 800)
+    pygame.time.set_timer(ALIENLASER, stats['alien_shot_speed'])
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                stats['alien_shot_speed'] = 800
+                write_stats()
                 pygame.quit()
                 sys.exit()
             if event.type == ALIENLASER:

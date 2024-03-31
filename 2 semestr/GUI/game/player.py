@@ -1,9 +1,19 @@
 import pygame
 from laser import Laser
 
+def read_stats():
+    stats = {}
+    with open('c:/work/2 semestr/GUI/game/stats.txt', 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            key, value = line.strip().split(': ')
+            stats[key] = int(value)
+    return stats
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, constraint, speed):
         super().__init__()
+        self.stats = read_stats()
         self.image = pygame.image.load('c:/work/2 semestr/GUI/game/graphics/player.png').convert_alpha()
         self.rect = self.image.get_rect(midbottom = pos)
         self.speed = speed
@@ -11,15 +21,17 @@ class Player(pygame.sprite.Sprite):
         self.ready = True
         self.SL_ready = True
         self.shoot_time = 0
-        self.shoot_cooldown = 600
+        self.shoot_cooldown = self.stats['player_shot_cooldown']
         self.SL_shoot_time = 0
-        self.SL_shoot_cooldown = 10000
+        self.SL_shoot_cooldown = self.stats['player_SL_shot_cooldown']
 
         self.lasers = pygame.sprite.Group()
         self.SL_laser = pygame.sprite.Group()
 
         self.laser_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/laser.wav')
         self.laser_sound.set_volume(0.4)
+        self.SL_shot_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/SL-shot.wav')
+        self.SL_shot_sound.set_volume(0.5)
 
     def get_input(self):
         keys = pygame.key.get_pressed()
@@ -36,6 +48,7 @@ class Player(pygame.sprite.Sprite):
             self.laser_sound.play()
 
         if keys[pygame.K_LCTRL] and self.SL_ready:
+            self.SL_shot_sound.play()
             self.SL_shoot()
             self.SL_ready = False
             self.SL_shoot_time = pygame.time.get_ticks()
