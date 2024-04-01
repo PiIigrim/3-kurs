@@ -1,6 +1,6 @@
 import pygame, sys, random
 from player import Player
-import obstacles, time
+import obstacles
 from alien import Alien, Extra
 from laser import Laser
 
@@ -16,7 +16,7 @@ def read_stats():
 def write_stats():
     with open('c:/work/2 semestr/GUI/game/stats.txt', 'w') as f:
         for key, value in stats.items():
-            f.write(f'{key}: {value}\n')
+            f.write(f'{key}: {int(value)}\n')
 
 
 class Game:
@@ -29,7 +29,7 @@ class Game:
         self.message_shown = False
         self.stat_changed = False
         self.played = False
-        self.level = 1
+        self.level = 0
         self.alien_rows = 4
         self.alien_cols = 5
         player_sprite = Player((screen_width / 2, screen_height), screen_width, 5)
@@ -60,7 +60,7 @@ class Game:
         self.extra_spawn_time = random.randint(40, 80)
 
         self.music = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/music.wav')
-        self.music.set_volume(0.2)
+        self.music.set_volume(0.4)
         self.music.play(loops = -1)
         self.laser_sound = pygame.mixer.Sound('c:/work/2 semestr/GUI/game/audio/laser.wav')
         self.laser_sound.set_volume(0.4)
@@ -201,6 +201,8 @@ class Game:
                 if pygame.sprite.spritecollide(laser, self.extra, True):
                     self.extra_hit_sound.play()
                     self.score += 500
+                    if self.lives < 3:
+                        self.lives += 1
                     laser.kill()
 
         if self.player.sprite.SL_laser:
@@ -215,8 +217,10 @@ class Game:
                     self.explosion_sound.play()
 
                 if pygame.sprite.spritecollide(sl_laser, self.extra, True):
-                    self.lives += 1
+                    self.extra_hit_sound.play()
                     self.score += 500
+                    if self.lives < 3:
+                        self.lives += 1
 
         if self.alien_lasers:
             for laser in self.alien_lasers:
@@ -226,7 +230,8 @@ class Game:
                 if pygame.sprite.spritecollide(laser, self.player, False):
                     laser.kill()
                     self.lives -= 1
-                    self.hit_sound.play()
+                    if self.lives > 0:
+                        self.hit_sound.play()
                     if self.lives <= 0:
                         self.game_over = True
 
@@ -286,7 +291,7 @@ class Game:
             screen.blit(SL_surface, SL_rect)
 
     def display_level(self):
-        level_surface = self.font.render(f'Level: {self.level}', False, 'white')
+        level_surface = self.font.render(f'Level: {self.level + 1}', False, 'white')
         level_rect = level_surface.get_rect(bottomright = (screen_width - 10, screen_height - 10))
         screen.blit(level_surface, level_rect)
     
@@ -297,14 +302,14 @@ class Game:
         if self.level > stats['best_level']:
             if not self.stat_changed:
                 stats['player_SL_shot_cooldown']  = stats['player_SL_shot_cooldown'] // 1.05
-            SL_shot_cd_decr_surface = self.font.render(f'SL cooldown decreased to {stats["player_SL_shot_cooldown"]}', False, 'white')
+            SL_shot_cd_decr_surface = self.font.render(f'SL cooldown decreased to {stats["player_SL_shot_cooldown"]} in next ship', False, 'white')
             SL_shot_cd_decr_rect = SL_shot_cd_decr_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 50))
             screen.blit(SL_shot_cd_decr_surface, SL_shot_cd_decr_rect)
         
         if self.score > stats['best_score']:
             if not self.stat_changed:
                 stats['player_shot_cooldown'] = stats['player_shot_cooldown'] // 1.05
-            shot_cd_decr_surface = self.font.render(f'Shot cooldown decreased to {stats["player_shot_cooldown"]}', False, 'white')
+            shot_cd_decr_surface = self.font.render(f'Shot cooldown decreased to {stats["player_shot_cooldown"]} in next ship', False, 'white')
             shot_cd_decr_rect = shot_cd_decr_surface.get_rect(center = (screen_width / 2, (screen_height / 2) + 100))
             screen.blit(shot_cd_decr_surface, shot_cd_decr_rect)
 
@@ -328,7 +333,7 @@ class Game:
                 self.restart_game()
         if self.level_clear:
             self.display_clear()
-            if pygame.time.get_ticks() - self.clear_time >= 3500:
+            if pygame.time.get_ticks() - self.clear_time >= 4000:
                 self.level_clear = False
                 self.message_shown = False
                 self.played = False
@@ -358,6 +363,8 @@ if __name__ == "__main__":
     screen_width = 1280
     screen_height = 720
     screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption('Космическая братва 1: Пришествие(Beta)')
+    pygame.display.set_icon(pygame.image.load('c:/work/2 semestr/GUI/game/graphics/red.png').convert_alpha())
     clock = pygame.time.Clock()
     game = Game()
 
