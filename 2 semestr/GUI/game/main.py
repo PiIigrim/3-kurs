@@ -22,17 +22,17 @@ def write_stats():
 class Game:
     def __init__(self):
         self.i = 0
-        self.speed_multiplier = 1
+        self.speed_multiplier = 1.25
         self.pause = False
         self.game_over = False
         self.level_clear = False
         self.message_shown = False
         self.stat_changed = False
         self.played = False
-        self.level = 0
+        self.level = 1
         self.alien_rows = 4
         self.alien_cols = 5
-        player_sprite = Player((screen_width / 2, screen_height), screen_width, 5)
+        player_sprite = Player((screen_width / 2, screen_height), screen_width, 7)
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
         self.lives = 3
@@ -53,8 +53,8 @@ class Game:
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
         self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
-        self.alien_direction = 1
-        self.down = 2
+        self.alien_direction = (1 * self.speed_multiplier) + 1.1
+        self.down = 8
 
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = random.randint(40, 80)
@@ -76,7 +76,6 @@ class Game:
         self.level_clear_sound.set_volume(0.5)
 
     def restart_game(self):
-        stats['alien_shot_speed'] = 800
         write_stats()
         self.stats = read_stats()
         self.i = 0
@@ -101,9 +100,11 @@ class Game:
 
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
+        self.alien_rows = 4
+        self.alien_cols = 5
         self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
-        self.alien_direction = 1
-        self.down = 2
+        self.alien_direction = (1 * self.speed_multiplier) + 1.1
+        self.down = 8
 
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = random.randint(40, 80)
@@ -117,15 +118,15 @@ class Game:
         self.aliens = pygame.sprite.Group()
         self.alien_lasers = pygame.sprite.Group()
         self.aliens_setup(rows = self.alien_rows, cols = self.alien_cols)
-        self.speed_multiplier += 0.2
+        self.speed_multiplier += 0.1
         self.down += 1
-        if self.level % 5 == 0:
+        if self.level % 3 == 0:
             choise = random.choice([1, 2])
             if choise == 1 : self.alien_rows += 1
             elif choise == 2 : self.alien_cols += 1
         
         if self.level % 3 == 0:
-            stats['alien_shot_speed'] = stats['alien_shot_speed'] // 1.2
+            stats['alien_shot_speed'] = stats['alien_shot_speed'] // 1.1
 
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = random.randint(40, 80)
@@ -160,10 +161,12 @@ class Game:
         if not self.pause:
             for alien in all_aliens:
                 if alien.rect.right >= screen_width:
-                    self.alien_direction = -1 * self.speed_multiplier
+                    self.alien_direction = -1 * (self.speed_multiplier + 1.15)
+                    #print(self.alien_direction)
                     self.alien_move_down(self.down)
                 elif alien.rect.left <= 0:
-                    self.alien_direction = 1 * self.speed_multiplier
+                    self.alien_direction = 1 * (self.speed_multiplier + 1.15)
+                    #print(self.alien_direction)
                     self.alien_move_down(self.down)
 
     def alien_move_down(self, distance):
@@ -291,7 +294,7 @@ class Game:
             screen.blit(SL_surface, SL_rect)
 
     def display_level(self):
-        level_surface = self.font.render(f'Level: {self.level + 1}', False, 'white')
+        level_surface = self.font.render(f'Level: {self.level}', False, 'white')
         level_rect = level_surface.get_rect(bottomright = (screen_width - 10, screen_height - 10))
         screen.blit(level_surface, level_rect)
     
@@ -327,7 +330,6 @@ class Game:
             if keys[pygame.K_RETURN]:
                 stats['best_level'] = self.level
                 stats['best_score'] = self.score
-                stats['alien_shot_speed'] = 800
                 write_stats()
                 self.game_over = False
                 self.restart_game()
@@ -374,7 +376,6 @@ if __name__ == "__main__":
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                stats['alien_shot_speed'] = 800
                 write_stats()
                 pygame.quit()
                 sys.exit()
