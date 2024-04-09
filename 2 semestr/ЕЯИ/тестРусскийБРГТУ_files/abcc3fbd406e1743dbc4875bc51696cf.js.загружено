@@ -1,0 +1,52 @@
+
+;(function ($) {
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-Token': Joomla.getOptions('csrf.token')
+		}
+	});
+})(jQuery);
+var sp_preloader = '';
+
+var sp_gotop = '';
+
+var sp_offanimation = 'default';
+document.addEventListener('DOMContentLoaded', function(event) { 
+	document.getElementById('carouselbanner-wrp-162').style.display = 'block'; // show
+});
+	
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-146136176-1');
+            
+	         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+                  ym(54028603, "init", {
+                  clickmap:true,
+                  trackLinks:true,
+                  accurateTrackBounce:true,
+                  webvisor:true
+            });
+            var slider162 = tns({container: '.carouselbanner-162',
+	items: 5,
+	autoplay: true,
+	autoplayTimeout: 2500,
+	autoplayHoverPause:true,
+	nav: false,
+	autoplayButtonOutput: false,
+	mode : 'carousel',
+	animateIn: 'tns-fadeIn',
+	animateOut: 'tns-fadeOut',
+	speed: 1000,
+	swipeAngle: false,
+	edgePadding : 0,
+	controlsContainer: '.controls-container-162',
+	responsive: {
+			320: {gutter: 3.3, items: 3, edgePadding:0},
+			567: {gutter: 6.6,	items: 4, edgePadding:0},
+			768: {gutter: 9.9,	items: 4, edgePadding:0},
+			992: {gutter: 11, items: 5, edgePadding:0}
+		}
+});new isvek.Bvi();
