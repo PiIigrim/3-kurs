@@ -26,7 +26,7 @@ def find_similar_words(input_word, text, max_distance):
 def choose_file():
     file_path = filedialog.askopenfilename(filetypes=[("HTML files", "*.html")])
     if file_path:
-        label_file.config(text=file_path)
+        label_file.config(text=f"Выбранный файл: {file_path}")
 
 def search():
     input_word = entry_word.get()
