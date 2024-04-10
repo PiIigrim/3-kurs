@@ -3,6 +3,7 @@ from tkinter import filedialog, messagebox
 import spacy
 from striprtf.striprtf import rtf_to_text
 
+# Загрузка модели spaCy для русского языка
 nlp = spacy.load("ru_core_news_sm")
 
 # Словарь для перевода меток частей речи
@@ -11,9 +12,8 @@ POS_TRANSLATIONS = {
     'ADP': 'предлог',
     'ADV': 'наречие',
     'AUX': 'вспомогательный глагол',
-    'CONJ': 'союз',
     'CCONJ': 'союз',
-    'DET': 'детерминатор',
+    'DET': 'определитель',
     'INTJ': 'междометие',
     'NOUN': 'существительное',
     'NUM': 'числительное',
@@ -76,9 +76,8 @@ def analyze_text(text):
     structures = []
     for sent in doc.sents:
         structure = {
-            'Текст': sent.text,
-            'Часть речи': [(token.text, translate_pos(token.pos_)) for token in sent],
-            'Зависимость': [(token.text, translate_dep(token.dep_), token.head.text) for token in sent]
+            'text': sent.text,
+            'tokens': [{'text': token.text, 'lemma': token.lemma_, 'pos': translate_pos(token.pos_), 'dep': translate_dep(token.dep_)} for token in sent]
         }
         structures.append(structure)
     return structures
@@ -107,13 +106,10 @@ def open_file():
             if structures:
                 result_text.delete(1.0, tk.END)
                 for structure in structures:
-                    result_text.insert(tk.END, f"Текст: {structure['Текст']}\n")
-                    result_text.insert(tk.END, "Части речи:\n")
-                    for token, pos in structure['Часть речи']:
-                        result_text.insert(tk.END, f"{token}: {pos}\n")
-                    result_text.insert(tk.END, "\nЗависимости:\n")
-                    for token, dep, head in structure['Зависимость']:
-                        result_text.insert(tk.END, f"{token} --{dep}--> {head}\n")
+                    result_text.insert(tk.END, f"Текст: {structure['text']}\n")
+                    result_text.insert(tk.END, "Семантико-синтаксический анализ:\n")
+                    for token in structure['tokens']:
+                        result_text.insert(tk.END, f"Токен: {token['text']}, Лемма: {token['lemma']}, Часть речи: {token['pos']}, Зависимость: {token['dep']}\n")
                     result_text.insert(tk.END, "\n" + "="*50 + "\n")
                 update_result_text_size()
 
@@ -122,9 +118,11 @@ def update_result_text_size():
     height = root.winfo_height()
     result_text.config(width=width, height=height)
 
+# Создание главного окна
 root = tk.Tk()
-root.title("СинТОКСИЧНЫЙ мастер")
+root.title("Тоже что и 4, но с учетом семантики")
 
+# Создание и настройка интерфейса
 frame = tk.Frame(root)
 frame.pack(padx=10, pady=10)
 
@@ -134,6 +132,8 @@ open_button.pack(side=tk.LEFT)
 result_text = tk.Text(frame, width=50, height=20)
 result_text.pack(side=tk.RIGHT)
 
+# Связываем событие изменения размера главного окна с обновлением размеров окна результатов
 root.bind("<Configure>", lambda event: update_result_text_size())
 
+# Запуск главного цикла приложения
 root.mainloop()
