@@ -83,7 +83,6 @@ class PDFAnalyzerApp:
             for page in pdf_reader.pages:
                 text += page.extract_text()
         self.analyze_text(text)
-        self.processing_label.config(text="")
 
     def analyze_text(self, text):
         words = word_tokenize(text)

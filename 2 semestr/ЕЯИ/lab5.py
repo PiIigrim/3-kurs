@@ -3,7 +3,6 @@ from tkinter import filedialog, messagebox
 import spacy
 from striprtf.striprtf import rtf_to_text
 
-# Загрузка модели spaCy для русского языка
 nlp = spacy.load("ru_core_news_sm")
 
 # Словарь для перевода меток частей речи
