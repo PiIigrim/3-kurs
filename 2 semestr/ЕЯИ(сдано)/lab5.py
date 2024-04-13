@@ -117,11 +117,9 @@ def update_result_text_size():
     height = root.winfo_height()
     result_text.config(width=width, height=height)
 
-# Создание главного окна
 root = tk.Tk()
 root.title("Тоже что и 4, но с учетом семантики")
 
-# Создание и настройка интерфейса
 frame = tk.Frame(root)
 frame.pack(padx=10, pady=10)
 
@@ -131,8 +129,6 @@ open_button.pack(side=tk.LEFT)
 result_text = tk.Text(frame, width=50, height=20)
 result_text.pack(side=tk.RIGHT)
 
-# Связываем событие изменения размера главного окна с обновлением размеров окна результатов
 root.bind("<Configure>", lambda event: update_result_text_size())
 
-# Запуск главного цикла приложения
 root.mainloop()
