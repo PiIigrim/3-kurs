@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2/"
+     xml:base="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-2="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Может_использовать -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Может_использовать">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Содержит -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Содержит">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Является -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Является">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Является_частью -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Является_частью">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Адвар -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Адвар"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Ботнет -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Ботнет"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус-Червь -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус-Червь"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Кейлоггер -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Кейлоггер"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Содержит"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Малваре -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Малваре"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Рансомвар -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Рансомвар"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Руткит -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Руткит"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Сетевой_вирус -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Сетевой_вирус"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Спайвар -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Спайвар"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Троян -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Троян"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Метод_инфекции -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Метод_инфекции">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#вымогаемая_сумма -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#вымогаемая_сумма">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Рансомвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#задача -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#задача">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Троян"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#захваченные_данные -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#захваченные_данные">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Кейлоггер"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#имя -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#имя">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#количество_зараженных_компьютеров -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#количество_зараженных_компьютеров">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус-Червь"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#маскировка -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#маскировка">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Руткит"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_записи -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_записи">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Кейлоггер"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_передачи_информации -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_передачи_информации">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Спайвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_распространения -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_распространения">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Вирус-Червь"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_распространения_ПО -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#метод_распространения_ПО">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Малваре"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#опасность -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#опасность">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#привилегии -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#привилегии">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Руткит"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#размер -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#размер">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#распределенная_инфраструктура -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#распределенная_инфраструктура">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Ботнет"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#распространение -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#распространение">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Компьютерный_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#рекламные_баннеры -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#рекламные_баннеры">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Адвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#скорость_распространения -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#скорость_распространения">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Сетевой_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#скрытность_активности -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#скрытность_активности">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Троян"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#способ_оплаты -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#способ_оплаты">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Рансомвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#тип_рекламы -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#тип_рекламы">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Адвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#цель_атаки -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#цель_атаки">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Сетевой_вирус"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#цель_подслушивания -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#цель_подслушивания">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Класс_Спайвар"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Адвар -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Адвар">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Малваре"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Ботнет -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Ботнет">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус-червь -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус-червь">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Кейлоггер -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Кейлоггер">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Малваре -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Малваре">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Компьютерные_вирусы"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Рансомвар -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Рансомвар">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Малваре"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Руткит -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Руткит">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Сетевой_вирус -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Сетевой_вирус">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Спайвар -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Спайвар">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Малваре"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Троян -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Троян">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#IloveViris -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#IloveViris">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Является"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус-червь"/>
+            </owl:Restriction>
+        </rdf:type>
+        <untitled-ontology-2:Класс_Вирус-Червь></untitled-ontology-2:Класс_Вирус-Червь>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Вирус-червь"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Руткит"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Сетевой_вирус"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/danik/ontologies/2024/3/untitled-ontology-2#Троян"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

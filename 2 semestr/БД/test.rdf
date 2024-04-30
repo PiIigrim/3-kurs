@@ -1,0 +1,80 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix virus: <http://example.com/virus#>.
+@prefix property: <http://example.com/property#>.
+
+# Классы
+virus:Вирус rdf:type owl:Class.
+virus:Вредоносное_программное_обеспечение rdf:type owl:Class.
+virus:Троян rdf:type owl:Class.
+virus:Червь rdf:type owl:Class.
+virus:Руткит rdf:type owl:Class.
+virus:Спам rdf:type owl:Class.
+virus:Сетевой_вирус rdf:type owl:Class.
+virus:Антивирусное_программное_обеспечение rdf:type owl:Class.
+virus:Защитное_программное_обеспечение rdf:type owl:Class.
+
+# Свойства
+property:название rdf:type owl:DatatypeProperty.
+property:тип rdf:type owl:DatatypeProperty.
+property:описание rdf:type owl:DatatypeProperty.
+property:уровень_угрозы rdf:type owl:DatatypeProperty.
+property:способ_распространения rdf:type owl:DatatypeProperty.
+property:методы_защиты rdf:type owl:DatatypeProperty.
+property:дата_обнаружения rdf:type owl:DatatypeProperty.
+property:источник rdf:type owl:DatatypeProperty.
+property:цель rdf:type owl:DatatypeProperty.
+property:размер rdf:type owl:DatatypeProperty.
+
+# Отношения
+property:распространяется_через rdf:type owl:ObjectProperty.
+property:использует rdf:type owl:ObjectProperty.
+property:поражает rdf:type owl:ObjectProperty.
+property:является_подклассом rdf:type owl:ObjectProperty.
+
+# Подклассы
+virus:Троян rdfs:subClassOf virus:Вредоносное_программное_обеспечение.
+virus:Червь rdfs:subClassOf virus:Вредоносное_программное_обеспечение.
+virus:Руткит rdfs:subClassOf virus:Вредоносное_программное_обеспечение.
+virus:Спам rdfs:subClassOf virus:Вредоносное_программное_обеспечение.
+virus:Сетевой_вирус rdfs:subClassOf virus:Вирус.
+virus:Антивирусное_программное_обеспечение rdfs:subClassOf virus:Защитное_программное_обеспечение.
+
+# Пример инстанции
+virus:МойВирус rdf:type virus:Троян;
+    property:название "МойВирус";
+    property:тип "Троян";
+    property:описание "Описание вируса";
+    property:уровень_угрозы "Высокий";
+    property:способ_распространения "Прикрепленный файл в электронном письме";
+    property:методы_защиты "Файервол";
+    property:дата_обнаружения "2024-04-25"^^xsd:date;
+    property:источник "Зараженный веб-сайт";
+    property:цель "Кража конфиденциальной информации";
+    property:размер "1024"^^xsd:integer.
+
+virus:ЧервьНетСлучайныеДанные rdf:type virus:Червь;
+    property:название "ЧервьНетСлучайныеДанные";
+    property:тип "Червь";
+    property:описание "Червь без случайных данных";
+    property:уровень_угрозы "Средний";
+    property:способ_распространения "Внедрение в сеть через слабые точки";
+    property:методы_защиты "Обновление программного обеспечения";
+    property:дата_обнаружения "2024-04-24"^^xsd:date;
+    property:источник "Неизвестно";
+    property:цель "Распространение";
+    property:размер "1024"^^xsd:integer.
+
+virus:СпамБот rdf:type virus:Спам;
+    property:название "СпамБот";
+    property:тип "Спам";
+    property:описание "Бот для отправки спама";
+    property:уровень_угрозы "Средний";
+    property:способ_распространения "Загрузка вложений в электронной почте";
+    property:методы_защиты "Фильтрация спама";
+    property:дата_обнаружения "2024-04-23"^^xsd:date;
+    property:источник "Фишинговые сайты";
+    property:цель "Распространение спама";
+    property:размер "512"^^xsd:integer.
