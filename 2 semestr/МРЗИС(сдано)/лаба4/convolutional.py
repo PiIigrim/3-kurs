@@ -1,6 +1,6 @@
 import numpy as np
 import keras
-from keras.utils import to_categorical
+from keras import utils
 from scipy.signal import correlate2d
 from sklearn.metrics import accuracy_score
 
@@ -166,8 +166,8 @@ y_train = train_labels[:5000]
 X_test = train_images[5000:10000] / 255.0
 y_test = train_labels[5000:10000]
 
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+y_train = utils.to_categorical(y_train)
+y_test = utils.to_categorical(y_test)
 
 conv = Convolution(X_train[0].shape, 6, 1)
 pool = MaxPool(2)
