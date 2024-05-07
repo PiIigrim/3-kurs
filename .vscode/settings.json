@@ -106,6 +106,12 @@
     "cinttypes": "cpp"
   },
   "cmake.configureOnOpen": false,
-  "python.analysis.typeCheckingMode": "off",
-  "dotnet.defaultSolution": "disable"
+  "python.analysis.typeCheckingMode": "basic",
+  "dotnet.defaultSolution": "disable",
+  "python.analysis.autoImportCompletions": true,
+  "python.testing.pytestArgs": [
+    "2 semestr"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
 }

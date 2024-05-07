@@ -1,5 +1,0 @@
-best_level: 2
-best_score: 4200
-player_shot_cooldown: 1142
-player_SL_shot_cooldown: 28571
-alien_shot_speed: 600
